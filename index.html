@@ -7,6 +7,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bitter&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:ital@1&display=swap" rel="stylesheet">
+
 
 </head>
 
@@ -16,6 +20,7 @@
     margin: 0;
     padding: 0px;
     box-sizing: border-box;
+    cursor: url('mouse.svg'),auto;
 }
 
 body{
@@ -45,7 +50,7 @@ body{
         color:white;
         background-color: rgb(85, 156, 255);
         border: unset;
-        cursor: pointer;
+        cursor: url('mousehover.svg'),auto;
 }
 
 .poem:hover{
@@ -95,7 +100,7 @@ body{
 .page-refresh {
     position: fixed;
     bottom: 8vh;
-    left: 88vw;
+    right:4vw;
     z-index: 9999999999;
     font-size: 20px; 
     font-family: 'Bitter', serif; 
@@ -108,10 +113,74 @@ body{
     background-color: #6373ff;
     color:white
 }
+
+.info{
+    position: fixed;
+    bottom: 15vh;
+    right: 4vw;
+    z-index: 9999999999;
+    font-size: 20px; 
+    font-family: 'Bitter', serif; 
+    padding-left:15px; 
+    padding-right:15px; 
+    padding-top:10px; 
+    padding-bottom:10px; 
+    border-radius:50px; 
+    border:unset;
+    background-color:pink;
+    color:rgb(6, 83, 6);
+}
+
+.infosection{
+    display:none;
+
+}
+.infotext{
+    position:fixed;
+    bottom: 15vh;
+    right: 4vw;
+    height:75vh;
+    width:30vw;
+    background-color:pink;
+    z-index:800;
+    border-radius:20px;
+    transition: 0.5s ease;
+
+}
+
+.infoword{
+    position:fixed;
+    top: 13vh;
+    left: 67vw;
+    right:5vw;
+    font-size: 2vw;
+    font-family: 'Bitter', serif; 
+    padding-left:15px; 
+    padding-right:15px; 
+    padding-top:10px; 
+    padding-bottom:10px; 
+    border-radius:50px;
+    color:rgb(6, 83, 6);
+    z-index:800;
+    transition: 0.5s ease;
+   
+}
+
+.info:hover ~.infosection{
+    display:block;
+
+}
+
 </style>
 <body>
     <button onclick="location.reload();" class="page-refresh">Refresh!</button>
-    
+    <button class="info" onmouseenter="appearInfo()">Info</button>
+   
+    <div class="infosection">
+    <div class="infotext"></div>
+    <p class="infoword"><strong>About This Project</strong> <br><br>
+         This is Vicky's final project for the 2024 RISD Spring class <em>Web Design</em> taught by Gabriel Drozdov. <br><br> Thank you to all my friends who contributed to the voices in the poems: <br> Mandy, Vincent, Kingsley, Yuan, Jiaqi, Irene, Cindy, Jo, Dino, Sarah, Kelly, Nora & Lizi!</p>
+        </div>
     
     
     <div class="container">
@@ -169,8 +238,6 @@ body{
             <span onmouseenter="myFunction(this); playSound('boin.wav')"style="top: 35vh; left: 22vw;"><img src="smallstar.svg"></span>
             <span onmouseenter="myFunction(this); playSound('boin.wav')"style="top: 56vh; left: 8vw;"><img src="smallstar.svg"></span>
             <span onmouseenter="myFunction(this); playSound('boin.wav')"style="top: 68vh; left: 95vw;"><img src="smallstar.svg"></span>
-            <span onmouseenter="myFunction(this); playSound('boin.wav')"style="top: 16vh; left: 40vw;"><img src="smallstar.svg"></span>
-            <span onmouseenter="myFunction(this); playSound('boin.wav')"style="top: 16vh; left: 40vw;"><img src="smallstar.svg"></span>
         
         </p>
     
@@ -220,6 +287,13 @@ body{
             element.style.display = "block";
         }
     }
+
+    //     var infoElement = document.querySelectorAll('.infotext','.infoword');
+    //     function appearInfo() {
+    //     for (let element of infoElement) {
+    //         element.style.display = "block";
+    //     }
+    // }
 
 
 
