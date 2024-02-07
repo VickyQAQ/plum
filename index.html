@@ -75,7 +75,7 @@ body{
     height: 100vh;
     overflow: hidden;
 }
-#new-element {
+.new-element {
     display:none;
     position: fixed;
     left: 50%;
@@ -112,24 +112,27 @@ body{
 <body>
     <button onclick="location.reload();" class="page-refresh">Refresh!</button>
     
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:5vh; color:rgb(33, 174, 33)">This is Just to Say</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:14vh; color:pink">a poem by</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:20vh; color:pink">William Carlos Williams</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:28vh">I have eaten</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:34vh">the plums</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:40vh">that were in</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:46vh">the icebox</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:52vh">and which</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:58vh">you were probably</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:64vh">saving</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:70vh">for breakfast</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:76vh">Forgive me</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:82vh">they were delicious</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:88vh">so sweet</div>
-    <div id="new-element" onmouseenter="myFunction(this)" style="top:94vh">and so cold</div>
+    
     
     <div class="container">
         <div class="rectangle"></div>
+
+        <div class="new-element" onmouseenter="myFunction(this); playSound('thisisjusttosay.m4a')" style="top:5vh; color:rgb(33, 174, 33)">This is Just to Say</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('apoemby.m4a')" style="top:14vh; color:pink">a poem by</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('williamcarloswilliams.m4a')" style="top:20vh; color:pink">William Carlos Williams</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('ihaveeaten.m4a')" style="top:28vh">I have eaten</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('theplums.m4a')" style="top:34vh">the plums</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('thatwerein.m4a')" style="top:40vh">that were in</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('theicebox.m4a')" style="top:46vh">the icebox</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('andwhich.m4a')" style="top:52vh">and which</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('youwereprobably.m4a')" style="top:58vh">you were probably</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('savingsaving.m4a')" style="top:64vh">saving</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('forbreakfast.m4a')" style="top:70vh">for breakfast</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('forgiveme.m4a')" style="top:76vh">Forgive me</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('theyweredelicious.m4a')" style="top:82vh">they were delicious</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('sosweet.m4a')" style="top:88vh">so sweet</div>
+    <div class="new-element" onmouseenter="myFunction(this); playSound('andsocold.m4a')" style="top:94vh">and so cold</div>
+    
         <p class="shape">
             <span onmouseenter="myFunction(this); playSound('ding.wav')" style="top: 15vh; left: 80vw;"><img src="goggles.svg"></span>
             <span onmouseenter="myFunction(this); playSound('hui.m4a')" style="top: 80vh; left: 22vw;"><img src="bar1.svg"></span>
@@ -179,6 +182,7 @@ body{
     
 
     <script>
+
 		var textOptions = [
             "This is Just to Say",
 			"a poem by", 
@@ -198,8 +202,8 @@ body{
 		]
 
 		var index = 0;
-        var newElement = document.querySelector('#new-element');
-
+        var allMyElements = document.querySelectorAll('.new-element');
+        
 		function changeTextInOrder(element) {
 			element.innerText = textOptions[index];
 
@@ -207,10 +211,15 @@ body{
 			if (index == textOptions.length+1) {
                 
                 element.style.display = "none";
-
-                newElement.style.display = "block";
+                appearAllElements();
 			}
 		}
+
+        function appearAllElements() {
+        for (let element of allMyElements) {
+            element.style.display = "block";
+        }
+    }
 
 
 
@@ -241,6 +250,7 @@ function playAudio(fileName) {
         if (!audioPlayed) { // Check if the audio hasn't been played yet
             var audio = new Audio(fileName);
             audio.play();
+            audio.loop = true;
             audioPlayed = true; // Set the flag to indicate that the audio has been played
         }
     }
